@@ -1,3 +1,4 @@
+#include <iostream>
 #include <functional>
 #include <stdio.h>
 #include <numeric>
@@ -1018,15 +1019,26 @@ bool MainWindow::loadDataFromFiles(QStringList filenames)
   {
     FileLoadInfo info;
     info.filename = filenames[i];
-    if (filenames.size() > 1)
-    {
-      info.prefix = prefix_ch;
-    }
+    std::string filenameStr = info.filename.toUtf8().constData();
+    std::cout << "--------------------------------------------------------------------" << std::endl;
+    std::cout << "Extracting CSV filename to use it as timeseries prefix" << std::endl;
+    std::string base_filename = filenameStr.substr(filenameStr.find_last_of("/\\/") + 1);
+    std::string::size_type const p(base_filename.find_last_of('.'));
+    std::string filename_without_extension = base_filename.substr(0, p);
+    std::cout << "Processing file: " << info.filename.toUtf8().constData() << std::endl;
+    //std::cout << filename_without_extension << std::endl;
 
+    std::cout << "--------------------------------------------------------------------" <<std::endl;
+    //if (filenames.size() > 1)
+    //{
+      //info.prefix = prefix_ch;
+    //}
+
+    info.prefix = QString::fromUtf8(filename_without_extension.c_str());
     if (loadDataFromFile(info))
     {
       loaded_filenames.push_back(filenames[i]);
-      prefix_ch++;
+      //prefix_ch++;
     }
   }
   if (loaded_filenames.size() > 0)
