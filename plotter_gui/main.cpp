@@ -160,7 +160,7 @@ int main(int argc, char* argv[])
     const QPoint currentDesktopsCenter = desktop->availableGeometry(scrn).center();
     splash.move(currentDesktopsCenter - splash.rect().center());
 
-    //splash.show();
+    splash.show();
     app.processEvents();
 
     auto deadline = QDateTime::currentDateTime().addMSecs(500);
