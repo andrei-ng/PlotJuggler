@@ -956,7 +956,7 @@ void MainWindow::importPlotDataMap(PlotDataMapRef& new_data, bool remove_old)
         old_plots_to_delete.push_back(it.first);
       }
     }
-
+    /*
     if (!old_plots_to_delete.empty())
     {
       QMessageBox::StandardButton reply;
@@ -967,6 +967,7 @@ void MainWindow::importPlotDataMap(PlotDataMapRef& new_data, bool remove_old)
         onDeleteMultipleCurves(old_plots_to_delete);
       }
     }
+    */
   }
 
   bool curvelist_modified = false;
@@ -996,6 +997,8 @@ bool MainWindow::isStreamingActive() const
 
 bool MainWindow::loadDataFromFiles(QStringList filenames)
 {
+  // Disable this warning message box; Less button presses
+  /*
   if (filenames.size() > 1)
   {
     static bool show_me = true;
@@ -1011,7 +1014,7 @@ bool MainWindow::loadDataFromFiles(QStringList filenames)
     //    connect(cb, &QCheckBox::stateChanged, this, [this, cb , &show_me]() {  show_me = !cb->isChecked(); } );
     msgbox.exec();
   }
-
+  */
   char prefix_ch = 'A';
   QStringList loaded_filenames;
 
